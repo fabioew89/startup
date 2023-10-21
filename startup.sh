@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-
+#
+# Author: Fabio Ewerton
+# Site: fabio.eti.br 
+# Social: FabioEw89
+#
 # .............................. VARIABLES .............................. #
 APT_UPDATE=(
     "update --fix-missing"
@@ -13,9 +17,10 @@ APT_INSTALL=(
     "git"
     "vim"
     "curl"
-    "hollywood"
+    "zsh"
 )
 # ....................................................................... #
+
 # .............................. FUNCTIONS .............................. #
 apt_update(){
     for update in "${APT_UPDATE[@]}"; do
@@ -25,7 +30,7 @@ apt_update(){
 apt_install(){
     for pack in "${APT_INSTALL[@]}"; do
         if ! dpkg -l | grep -qw "^ii\s\+$pack"; then
-            sudo apt install $pack -y # >> /dev/null
+            sudo apt install $pack -y >> /dev/null 2>&1
             if [ $? -eq 0 ]; then
                 echo "[INFO] - O App $pack foi instalado com sucesso!"
             else
@@ -35,7 +40,19 @@ apt_install(){
             echo "[INFO] - O App $pack já está instalado \ o /"
         fi
     done
+    install_zsh(){
+        if dpkg -l | grep -qw "^ii\s\+zsh"; then
+            sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+            git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        fi
+    }
+    install_zsh    
 }
+# apt_update(){
+#     for pack in "${APT_INSTALL[@]}"; do
+#         $pack --version
+#     done
+# }
 # ....................................................................... #
 
 # .............................. CALL to ACTION ......................... #
