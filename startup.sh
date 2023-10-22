@@ -37,25 +37,28 @@ apt_install(){
                 echo "[ERROR] - Falha ao instalar o App $pack :("
             fi       
         else
-            echo "[INFO] - O App $pack já está instalado \ o /"
+            echo "[INFO] - O App $pack já está instalado ;"
         fi
     done
     install_zsh(){
-        if dpkg -l | grep -qw "^ii\s\+zsh"; then
-            sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-            git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        if ! dpkg -l | grep -qw "^ii\s\+zsh"; then
+            if [ $? -eq 0 ]; then
+                echo "[INFO] - O app Oh-my-zsh ja esta instalado"
+            else
+                sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+                git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions                
+            fi
+
         fi
     }
-    install_zsh    
 }
-# apt_update(){
-#     for pack in "${APT_INSTALL[@]}"; do
-#         $pack --version
-#     done
-# }
+
+
 # ....................................................................... #
 
 # .............................. CALL to ACTION ......................... #
+
 apt_update
 apt_install
+install_zsh    
 # ....................................................................... #
