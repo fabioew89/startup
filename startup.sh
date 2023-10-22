@@ -5,6 +5,10 @@
 # Social: FabioEw89
 #
 # .............................. VARIABLES .............................. #
+
+MY_NAME="Fabio Ewerton"
+MY_EMAIL="fabioew89@gmail.com"
+
 APT_UPDATE=(
     "update --fix-missing"
     "upgrade -y"
@@ -36,29 +40,32 @@ apt_install(){
             else
                 echo "[ERROR] - Falha ao instalar o App $pack :("
             fi       
-        else
+        elsegit config --global user.name "Fabio Ewerton"
             echo "[INFO] - O App $pack já está instalado ;"
         fi
     done
-    install_zsh(){
-        if ! dpkg -l | grep -qw "^ii\s\+zsh"; then
-            if [ $? -eq 0 ]; then
-                echo "[INFO] - O app Oh-my-zsh ja esta instalado"
-            else
-                sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-                git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions                
-            fi
-
+    git_config(){
+        if dpkg -l | grep -qw "^ii\s\+git"; then
+            git config --global user.name "$MY_NAME"
+            git config --global user.email "$MY_EMAIL"
         fi
     }
+    install_zsh(){
+        if ! dpkg -l | grep -qw "^ii\s\+zsh"; then
+            echo "[INFO] - Installing Oh-my-zsh..."
+            sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+            git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        else
+            echo "[INFO] - The app Oh-my-zsh is already installed"
+        fi
+    }  
+# ..... CALL INTERNAL FUNCITIONS ..... #
+    install_zsh
+    git_config
 }
-
-
 # ....................................................................... #
 
 # .............................. CALL to ACTION ......................... #
-
 apt_update
 apt_install
-install_zsh    
 # ....................................................................... #
