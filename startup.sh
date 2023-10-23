@@ -37,6 +37,10 @@ APT_INSTALL=(
 # |                               FUNCTIONS                                 |
 # +-------------------------------------------------------------------------+
 
+remove_locks(){
+    sudo rm /var/lib/dpkg/lock-frontend
+    sudo rm /var/cache/apt/archives/lock 
+}
 apt_update(){
     for update in "${APT_UPDATE[@]}"; do
         sudo apt $update >> /dev/null 2>&1
@@ -76,6 +80,7 @@ install_zsh(){
 # |                           CALL TO ACTION                                |
 # +-------------------------------------------------------------------------+
 
+remove_locks
 apt_update
 apt_install
 install_zsh
