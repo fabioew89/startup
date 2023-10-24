@@ -32,7 +32,6 @@ APT_INSTALL=(
     "zsh"
 )
 
-
 # +-------------------------------------------------------------------------+
 # |                               FUNCTIONS                                 |
 # +-------------------------------------------------------------------------+
@@ -66,8 +65,8 @@ git_config(){
         git config --global user.email "$MY_EMAIL"
     fi
 }
-install_zsh(){
-    if ! dpkg -l | grep -qw "^ii\s\+zsh"; then
+oh-my-zsh(){
+    if dpkg -l | grep -qw "^ii\s\+zsh"; then
         echo "[INFO] - Installing Oh-my-zsh..."
         sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -83,7 +82,7 @@ install_zsh(){
 remove_locks
 apt_update
 apt_install
-install_zsh
+oh-my-zsh
 git_config
 
 # +-------------------------------------------------------------------------+
