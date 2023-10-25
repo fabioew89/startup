@@ -95,11 +95,11 @@ install_oh_my_zsh() {
 # |                           CALL TO ACTION                                |
 # +-------------------------------------------------------------------------+
 
-# remove_locks
-# apt_update
-# apt_install
+remove_locks
+apt_update
+apt_install
 install_scripts
-# install_oh_my_zsh
+install_oh_my_zsh
 
 # +-------------------------------------------------------------------------+
 # |                               THE END                                   |
