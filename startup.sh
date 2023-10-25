@@ -14,9 +14,6 @@
 # |                               VARIABLES                                 |
 # +-------------------------------------------------------------------------+
 
-MY_NAME="Fabio Ewerton"
-MY_EMAIL="fabioew89@gmail.com"
-
 APT_UPDATE=(
     "update --fix-missing"
     "upgrade -y"
@@ -59,12 +56,6 @@ apt_install(){
         fi
     done
 }
-git_config(){
-    if dpkg -l | grep -qw "^ii\s\+git"; then
-        git config --global user.name "$MY_NAME"
-        git config --global user.email "$MY_EMAIL"
-    fi
-}
 oh-my-zsh(){
     if dpkg -l | grep -qw "^ii\s\+zsh"; then
         echo "[INFO] - Installing Oh-my-zsh..."
@@ -83,7 +74,6 @@ remove_locks
 apt_update
 apt_install
 oh-my-zsh
-git_config
 
 # +-------------------------------------------------------------------------+
 # |                               THE END                                   |
