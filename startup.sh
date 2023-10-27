@@ -34,6 +34,9 @@ APT_INSTALL_LIST=(
     "curl"
     "zsh"
     "speedtest"
+    "snapd"
+    "flatpak"
+    # "gnome-software-plugin-flatpak" # Nao roda no kde XP
 )
 
 # +-------------------------------------------------------------------------+
@@ -60,7 +63,7 @@ apt_install(){
 
 install_scripts(){
     for script in "${SCRIPTS_LIST[@]}"; do
-        curl -s "$script" | sudo bash
+        curl -s "$script" | sudo bash >> /dev/null 2>&1
     done    
 }
 
@@ -70,7 +73,7 @@ install_oh_my_zsh() {
 
     # Verifique se o zsh está instalado
     dpkg -l | grep -qw "^ii\s\+zsh" || \
-    { echo "[INFO] - Zsh não está instalado. Por favor, instale-o primeiro."; return 1; }
+    { echo "[INFO] - Zsh não está instalado. Por favor, instale-o primeiro."; return 1; } >> /dev/null 2>&1
 
     # Instale o Oh-my-zsh se não estiver presente
     [ -d "$zsh_path" ] && echo "[INFO] - Oh-my-zsh já está instalado." || \
