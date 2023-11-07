@@ -39,6 +39,11 @@ APT_INSTALL_LIST=(
     # "gnome-software-plugin-flatpak" # Nao roda no kde XP
 )
 
+SNAP_LIST=(
+    "rpi-imager"
+    "multipass"
+)
+
 # +-------------------------------------------------------------------------+
 # |                               FUNCTIONS                                 |
 # +-------------------------------------------------------------------------+
