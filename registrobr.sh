@@ -28,7 +28,9 @@ DEST_DIR="$HOME/pdf.registro.br"
 # |                               FUNCTIONS                                 |
 # +-------------------------------------------------------------------------+
 
-if [ ! -d $DEST_DIR ]; then mkdir -p $DEST_DIR fi
+if [ ! -d $DEST_DIR ]; then 
+    mkdir -p $DEST_DIR
+fi
 
 for site in "${URLS[@]}"; do
     wget -r -l2 -np -A *.pdf -P "$DEST_DIR" "$site"
