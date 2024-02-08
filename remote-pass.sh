@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# TAC_PASS="qTAOZy9HNqzr"
 TAC_USERNAME="fabio.ewerton"
 
 for host in {1..5}; do
