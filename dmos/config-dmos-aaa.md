@@ -1,14 +1,12 @@
-show running-config hostname
 config
-
-alias ls
- expansion "show interface link | exclude Down"
+aaa authentication-order [ local tacacs ]
+aaa server tacacs SERVER-TACACS
+host 143.137.92.114
+authentication
+authorization
+accounting
+shared-secret $7$kAPMAXqGDgvx0t27r6JLplKkSoMD/Kvx
+top
 !
-alias ll
- expansion "show interface link"
-!
-alias ld
- expansion "show interface description | incl [A-Z]"
-!
-commit and-quit label alias comment "+ config alias by fabio"
+commit and-quit label aaa comment "+ config aaa by fabio"
 !

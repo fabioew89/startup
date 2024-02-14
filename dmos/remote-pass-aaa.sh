@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
-TAC_USERNAME="fabio.ewerton"
+# DM4610
+# Host: dm4610-demo.datacom.com.br
+# Usuário: demo-user
+# Senha: demodemo
+
+# TAC_USERNAME="fabio.ewerton"
+TAC_USERNAME="demo-user"
 
 for host in {1..5}; do
-    sshpass -f password ssh -o StrictHostKeyChecking=no "$TAC_USERNAME"@100.127.0.$host "sh run host" # < "config-dmos-alias.md"
+    sshpass -p "demodemo" ssh -o StrictHostKeyChecking=no "$TAC_USERNAME"@"dm4610-demo.datacom.com.br" < "config-dmos-aaa.md"
     echo " "
-    echo "##################################################"
+    # echo "##################################################"
     # sleep 2
 done
+
+
+
+
