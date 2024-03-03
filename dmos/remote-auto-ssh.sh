@@ -24,5 +24,3 @@ for host in 172.25.4.{24..27}; do
     done
     echo
 done
-
-
