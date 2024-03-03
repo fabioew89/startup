@@ -10,8 +10,7 @@ username=fabio.ewerton
 for host in 172.25.4.{24..27}; do
 
     if ping -c 3 -q $host > /dev/null; then
-        echo
-        echo -e "\e[32m[INFO] - Equipamento "$host" esta pingando\n\e[0m"
+        echo -e "\e[32m\n[INFO] - Equipamento "$host" esta pingando\n\e[0m"
         sshpass -f password ssh -o StrictHostKeyChecking=no \
         $username@$host "config ; sh hostname ; do show ip interface brief | include global"
     else
@@ -20,7 +19,7 @@ for host in 172.25.4.{24..27}; do
 
     echo
     for i in $( seq 15 ); do
-        echo -n "#####"
+        echo -n "DATACOM"
     done
     echo
 done
