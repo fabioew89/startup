@@ -1,1 +1,1 @@
-who | incl fabio
+logout session 299743079
