@@ -1,50 +1,29 @@
 #!/usr/bin/env bash
 
-USERNAME="fabio.ewerton"
-DATE="$(date +%F | sed s/-//g)"
-# COMMAND="show running-config"
-DEVICE_MODEL='DM4360'
+username="fabio.ewerton"
+device_model="DM4360"
+command="show running-config hostname ;\
+         show platform ; \
+         sh running-config lldp"
 
-### FUNCTIONS ###
+# host_ip=$(seq -f "100.127.0.%g" 0 10)
 
-ssh_device(){
-    sshpass -f password ssh -o StrictHostKeyChecking=no $USERNAME@$host "sh run lldp"
-}
-get_hostname(){
-    output_hostname="$( sshpass -f password ssh -o StrictHostKeyChecking=no $USERNAME@$host \
-        "show running-config hostname" | grep -i 'hostname' | cut -d ' ' -f 2)"    
-}
-get_device_model(){
-    output_device_model="$( sshpass -f password ssh -o StrictHostKeyChecking=no $USERNAME@$host \
-        "show platform" | awk 'NR==3 { print $2 }')"
-}
+for ip_host in 100.127.0.{60..79}; do
+    if ping -c 3 -q -W 3 "$ip_host" > /dev/null; then
+        ssh_output=$(sshpass -f password ssh -o StrictHostKeyChecking=no "$username"@"$ip_host" "$command")
+        get_device_hostname=$(echo "$ssh_output" | grep -i hostname | cut -d ' ' -f 2)
+        get_device_model=$(echo "$ssh_output" | awk 'NR==4 { print $2 }')
+        get_device_lldp=$(echo "$ssh_output" | awk '/lldp/,0')
 
-for host in 100.127.0.{1..90}; do
-    
-    get_hostname
-    get_device_model
-
-    if ping -c 3 -q $host > /dev/null; then
-
-        echo -e "\e[32m\n[INFO] - Get information about $output_hostname - $host\e[0m\n"
-
-        if [ $output_device_model == $DEVICE_MODEL ]; then
-            output=$(ssh_device)
-        else
-            echo -e "\e[31m\n[INFO] - Another Device\e[0m"
-
-        fi
-
-        echo  "$output"
-        
+        echo -e "\e[32m\n[INFO] - Geting information about "$get_device_hostname" - "$ip_host"\e[0m"
     else
-        echo -e "\e[31m\n[INFO] - Equipamento "$host" - "$output_hostname" NÃO esta pingando\e[0m"
+        echo -e "\e[31m\n[INFO] - Sorry, better luck next time "$ip_host"\e[0m"
     fi
 
+    # JUST SEPARATOR
     echo
     for _ in $( seq 15 ); do
         echo -n "##### "
     done
-    echo
-
+    echo   
 done
