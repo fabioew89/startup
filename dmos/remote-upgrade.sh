@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+l#!/usr/bin/env bash
 
 USERNAME="fabio.ewerton"
 COMMAND="show running-config hostname ;\
          show firmware"
 
-RED="\e[31;1;4m"
-GREEN="\e[32;1;4m"
-YELLOW="\e[33;1;4m"
+RED="\e[31;1m"
+GREEN="\e[32;1m"
+YELLOW="\e[33;1m"
 RESET="\e[0m"
 
 ssh_output(){
