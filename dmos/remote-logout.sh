@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 USERNAME="fabio.ewerton"
-HOST="172.24.128.132"
+HOST="100.127.0.2"
 
-for host in {1..3}; do
-    if ping -c 3 -q $HOST > /dev/null; then
+for host in {1..10}; do
+    if ping -c 3 -W 3 -q $HOST > /dev/null; then
 
         echo -e "\n\e[32m[INFO] - Equipamento $HOST esta Online!\e[0m"
         
@@ -18,7 +18,7 @@ for host in {1..3}; do
 
     echo
     for i in $( seq 10 ); do
-        echo -n "DATACOM"
+        echo -n "##### "
     done
     echo
 done
