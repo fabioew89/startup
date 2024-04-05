@@ -1,4 +1,4 @@
-l#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 USERNAME="fabio.ewerton"
 COMMAND="show running-config hostname ;\
@@ -38,8 +38,6 @@ for ip_host in 100.127.0.{1..100}; do
 
     # JUST SEPARATOR
     echo
-    for _ in $( seq 15 ); do
-        echo -n "##### "
-    done
+    for i in $( seq 15 ); do echo -n "##### " done
     echo   
 done
