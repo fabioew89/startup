@@ -1,5 +1,3 @@
-show running-config hostname
-!
 config
 !
 alias df
@@ -14,5 +12,5 @@ alias ll
 alias ls
  expansion "show interface link | exclude Down"
 !
-commit and-quit label alias comment "+ config alias by fabio"
+commit and-quit label alias comment "+ config alias by fabio via shell script"
 !
