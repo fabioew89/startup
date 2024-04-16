@@ -24,23 +24,16 @@ ssh_output(){
 }
 
 ssh_config(){
-    sshpass -f password ssh -o StrictHostKeyChecking=no -t \
+    sshpass -f password ssh -o StrictHostKeyChecking=no -tt \
     "$USERNAME"@"$ip_address" < "config/config-dmos-aaa.md"
 }
 
-# firmware_check_version(){
-#     [ $get_device_firmware_version -ge 8 ] && \
-#     echo -e "${GREEN}\nUp to date! 😁${RESET}" || \
-#     echo -e "${YELLOW}\nNeeds updating! 😭${RESET}"
-# }
-
-
-for ip_address in 100.127.0.{1..5}; do
+for ip_address in 100.127.0.{1..110}; do
     if ping -c 3 -q -W 3 "$ip_address" > /dev/null 2>&1; then
        
         ssh_output
 
-        echo -e "\n${GREEN}[INFO] - Geting information about \
+        echo -e "\n${GREEN}[INFO] - Geting information about\
         $get_device_hostname - $ip_address${RESET}"
         
         if [ "$get_device_aaa_pass_admin" == "$aaa_pass_admin" ] && \
