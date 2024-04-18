@@ -28,7 +28,7 @@ ssh_config(){
     "$USERNAME"@"$ip_address" < "config/config-dmos-aaa.md"
 }
 
-for ip_address in 100.127.0.{1..110}; do
+for ip_address in 100.127.0.{50..50}; do
     if ping -c 3 -q -W 3 "$ip_address" > /dev/null 2>&1; then
        
         ssh_output
@@ -45,7 +45,7 @@ for ip_address in 100.127.0.{1..110}; do
         else
 
             echo -e "\n${YELLOW}$get_device_aaa_users${RESET}"
-            ssh_config
+            ssh_config # configura o tacacs?
 
         fi
         
