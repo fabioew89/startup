@@ -6,6 +6,8 @@ aaa user admin
 password $1$Pi9kh92A$eiEHc/gCDDiOxLwMDJVjJ0
 group admin
 !
+no aaa user thiago
+!
 aaa server tacacs SERVER-TACACS
 host 143.137.92.114
 authentication
