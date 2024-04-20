@@ -13,9 +13,7 @@ for host in {1..110}; do
 
   # JUST SEPARATOR
   echo
-  for _ in $(seq 15); do
-    echo -n "##### "
-  done
-  echo
+  for _ in $( seq 15 ); do echo -n "##### "; done
+  echo   
   break
 done

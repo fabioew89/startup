@@ -64,10 +64,8 @@ for ip_address in 100.127.0.{1..110}; do
 
     # JUST SEPARATOR
     echo
-    for _ in $(seq 15); do
-        echo -n "##### "
-    done
-    echo
+    for _ in $( seq 15 ); do echo -n "##### "; done
+    echo   
 done
 
 ##### ##### ##### ##### ##### END ##### ##### ##### ##### #####

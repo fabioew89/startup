@@ -17,9 +17,8 @@ for host in 172.25.4.{24..27}; do
         echo -e "\e[31m\n[INFO] - Equipamento "$host" NÃO esta pingando\e[0m"
     fi
 
+    # JUST SEPARATOR
     echo
-    for i in $( seq 15 ); do
-        echo -n "DATACOM"
-    done
-    echo
+    for _ in $( seq 15 ); do echo -n "##### "; done
+    echo   
 done

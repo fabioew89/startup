@@ -22,5 +22,5 @@ cut -d " " -f 2 | \
 
 # < "config-dmos-alias.md"
 
-/var/lib/tftpboot/V8.../
+# /var/lib/tftpboot/V8.../
 

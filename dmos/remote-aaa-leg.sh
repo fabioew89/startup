@@ -27,9 +27,8 @@ for host in 100.127.0.{15..20}; do
         echo -e "\e[31m\n[INFO] - Equipamento "$host" NÃO esta pingando\e[0m"
     fi
 
+    # JUST SEPARATOR
     echo
-    for i in $( seq 15 ); do
-        echo -n "#####"
-    done
-    echo
+    for _ in $( seq 15 ); do echo -n "##### "; done
+    echo   
 done

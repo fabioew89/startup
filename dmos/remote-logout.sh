@@ -16,9 +16,8 @@ for host in {1..10}; do
     fi
 
 
+    # JUST SEPARATOR
     echo
-    for i in $( seq 10 ); do
-        echo -n "##### "
-    done
-    echo
+    for _ in $( seq 15 ); do echo -n "##### "; done
+    echo   
 done

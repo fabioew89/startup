@@ -24,7 +24,6 @@ ssh_output_device(){
   ssh_output_device="$(sshpass -f password ssh -o StrictHostKeyChecking=no \
   $USERNAME@"$device_ip" "$COMMAND")"
 
-  # VARIABLE
   get_device_hostname="$(echo "$ssh_output_device" | awk 'NR==1 { print $2 }')"
   get_device_ip_int_brief="$(echo "$ssh_output_device" | awk '/Type Codes/,0')"
   # get_info_device="$(echo "$ssh_output_device")"
@@ -45,12 +44,9 @@ for device_ip in "${list_demo_device[@]}"; do
 
   fi
 
+  # JUST SEPARATOR
   echo
-  # shellcheck disable=SC2034
-  for i in $(seq 5); do
-    echo -n '##### '
-  done
-  echo  
-
+  for _ in $( seq 15 ); do echo -n "##### "; done
+  echo   
   break
 done

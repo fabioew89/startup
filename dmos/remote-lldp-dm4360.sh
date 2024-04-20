@@ -22,8 +22,6 @@ for ip_host in 100.127.0.{60..79}; do
 
     # JUST SEPARATOR
     echo
-    for _ in $( seq 10 ); do
-        echo -n "##### "
-    done
-    echo   
+    for _ in $( seq 15 ); do echo -n "##### "; done
+    echo    
 done
